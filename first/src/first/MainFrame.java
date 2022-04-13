@@ -1,31 +1,32 @@
 package first;
-import java.awt.BorderLayout;
-
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
-import javax.swing.SwingConstants;
 import java.awt.Color;
+
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
-public class MainFrame extends JFrame {
+@SuppressWarnings("serial")
+public class MainFrame extends JFrame{
 
 	private JPanel contentPane;
-
+	private JLabel titleLabel;
+	private JLabel titleImage;
+	private ImageIcon icon;
+	private Image img;
+	private Image imgScale;
+	private ImageIcon scaledIcon;
+	private JButton startButton;
+	
 	/**
 	 * Launch the application.
 	 * @throws IOException 
@@ -35,6 +36,7 @@ public class MainFrame extends JFrame {
 			public void run() {
 				try {
 					MainFrame frame = new MainFrame();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,9 +49,7 @@ public class MainFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainFrame() {
-		getContentPane().setLayout(null);
-		
-		JLabel titleLabel = new JLabel("New label");
+		titleLabel = new JLabel("New label");
 		titleLabel.setBounds(137, 27, 418, 175);
 		getContentPane().add(titleLabel);
 		setTitle("Wordle Solver ");
@@ -61,19 +61,18 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel titleImage = new JLabel();
-
-	    ImageIcon icon = new ImageIcon(this.getClass().getResource("/title.jpg"));
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imgScale);
+		titleImage = new JLabel();
+	    icon = new ImageIcon(this.getClass().getResource("/title.jpg"));
+        img = icon.getImage();
+        imgScale = img.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
+        scaledIcon = new ImageIcon(imgScale);
         titleImage.setIcon(scaledIcon);
-		//ImageIcon title = new ImageIcon(new ImageIcon("title.png").getImage().getScaledInstance(titleImage.getWidth(), titleImage.getHeight(), Image.SCALE_DEFAULT));
-		titleImage.setBounds(98, 11, 1029, 227);
+		titleImage.setBounds(130, 11, 1029, 227);
 		contentPane.add(titleImage);
 		
-		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addActionListener(new ActionListener() {
+		startButton = new JButton("Start");
+		startButton.setBackground(UIManager.getColor("Slider.shadow"));
+		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FrameTwo nw = new FrameTwo();
 				nw.newScreen();
@@ -83,11 +82,11 @@ public class MainFrame extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				setVisible(false);
+				dispose();
 			}
 		});
-		btnNewButton.setBounds(485, 285, 232, 117);
-		contentPane.add(btnNewButton);
+		startButton.setBounds(485, 285, 232, 117);
+		contentPane.add(startButton);
 		
 		
 	}

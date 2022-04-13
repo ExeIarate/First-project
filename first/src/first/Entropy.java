@@ -65,17 +65,6 @@ public class Entropy {
 			}
 		}
 		duplicate.removeAll(duplicate);
-		
-		/*for(int i = 0; i < wordleList.size(); i++) {
-			if(!wordleList.get(i).contains(first)  || 
-			   !wordleList.get(i).contains(second) || 
-			   !wordleList.get(i).contains(third)  ||
-			   !wordleList.get(i).contains(fourth) ||
-			   !wordleList.get(i).contains(fifth)) {
-				counter++;
-			}
-		}*/
-		
 		return (counter / 5) / wordleList.size();
 	}
 }

@@ -56,9 +56,8 @@ public class Reduce {
 		third = word.substring(2,3);
 		fourth = word.substring(3,4);
 		fifth = word.substring(4,5);
-		/* Checks if a letter is green and adds it to the green list, removes
-		 *        all words that do not have that letter in that spot
-		 */
+		//If all letters are green remove all words except the matching word from Arraylist
+		
 		if(one == 3 && two == 3 && three == 3 && four == 3 && five == 3) {
 			for(int i = 0; i < wordleList.size();) {
 				if(!(wordleList.get(i).equals(word))) {
@@ -68,7 +67,10 @@ public class Reduce {
 					i++;
 				}
 			}
-		}
+		}		
+		/* Checks if a letter is green and adds it to the green list, removes
+		 *        all words that do not have that letter in that spot
+		 */
 		if(one == 3) {					
 			if(!(green.contains(first))) {
 				green.add(first);

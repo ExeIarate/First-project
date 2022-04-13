@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
-	static double entropy;
-	static int one = 1;
-	static int two = 1;
-	static int three = 1;
-	static int four = 1;
-	static int five = 1;
-	static double minSize = 999999;
-	static String word = "salet";
-	static List<String> wordleList = new ArrayList<String>();
-	static Reduce list = new Reduce(word, wordleList, one, two, three, four, five);
-	static Entropy calc = new Entropy(wordleList, word);
+	private static double entropy;
+	private static int one = 1;
+	private static int two = 1;
+	private static int three = 1;
+	private static int four = 1;
+	private static int five = 1;
+	private static double minSize = 999999;
+	private static String word = "salet";
+	private static List<String> wordleList = new ArrayList<String>();
+	private static Reduce list = new Reduce(word, wordleList, one, two, three, four, five);
+	private static Entropy calc = new Entropy(wordleList, word);
 	
 	public static String setWord(){
 		list.update(word, wordleList, one, two, three, four, five);

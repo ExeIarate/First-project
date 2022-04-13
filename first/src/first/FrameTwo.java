@@ -1,34 +1,25 @@
 package first;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextArea;
-import javax.swing.JLabel;
 import java.awt.Color;
-import javax.swing.JTextPane;
-import javax.swing.DropMode;
 
-public class FrameTwo extends JFrame {
+public class FrameTwo{
 
+	private static JFrame frameTwo = new JFrame();
 	private JPanel Jframe;
 	private JTextField wordBox;
 	private JTextField wordCount;
+	private JTextArea listBox;
 	private JButton buttonr1c1;
 	private JButton buttonr1c2;
 	private JButton buttonr1c3;
@@ -60,38 +51,40 @@ public class FrameTwo extends JFrame {
 	private JButton buttonr6c4;
 	private JButton buttonr6c5;
 	private JButton resetButton;
-	int enterCounter = 1;
-	int counterR1C1;
-	int counterR1C2;
-	int counterR1C3;
-	int counterR1C4;
-	int counterR1C5;
-	int counterR2C1;
-	int counterR2C2;
-	int counterR2C3;
-	int counterR2C4;
-	int counterR2C5;
-	int counterR3C1;
-	int counterR3C2;
-	int counterR3C3;
-	int counterR3C4;
-	int counterR3C5;
-	int counterR4C1;
-	int counterR4C2;
-	int counterR4C3;
-	int counterR4C4;
-	int counterR4C5;
-	int counterR5C1;
-	int counterR5C2;
-	int counterR5C3;
-	int counterR5C4;
-	int counterR5C5;
-	int counterR6C1;
-	int counterR6C2;
-	int counterR6C3;
-	int counterR6C4;
-	int counterR6C5;
+	private JButton enterButton;
+	
 
+	private int enterCounter = 1;
+	private int counterR1C1;
+	private int counterR1C2;
+	private int counterR1C3;
+	private int counterR1C4;
+	private int counterR1C5;
+	private int counterR2C1;
+	private int counterR2C2;
+	private int counterR2C3;
+	private int counterR2C4;
+	private int counterR2C5;
+	private int counterR3C1;
+	private int counterR3C2;
+	private int counterR3C3;
+	private int counterR3C4;
+	private int counterR3C5;
+	private int counterR4C1;
+	private int counterR4C2;
+	private int counterR4C3;
+	private int counterR4C4;
+	private int counterR4C5;
+	private int counterR5C1;
+	private int counterR5C2;
+	private int counterR5C3;
+	private int counterR5C4;
+	private int counterR5C5;
+	private int counterR6C1;
+	private int counterR6C2;
+	private int counterR6C3;
+	private int counterR6C4;
+	private int counterR6C5;
 	
 	
 	/**
@@ -101,8 +94,8 @@ public class FrameTwo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrameTwo frame = new FrameTwo();
-					frame.setVisible(true);
+					frameTwo.setLocationRelativeTo(null);
+					frameTwo.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -114,11 +107,11 @@ public class FrameTwo extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameTwo() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		frameTwo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameTwo.setBounds(100, 100, 1280, 720);
 		Jframe = new JPanel();
 		Jframe.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(Jframe);
+		frameTwo.setContentPane(Jframe);
 		Jframe.setLayout(null);
 		
 		wordBox = new JTextField();
@@ -130,7 +123,7 @@ public class FrameTwo extends JFrame {
 		wordBox.setColumns(10);
 		wordBox.setEditable(false); 
 		
-		JTextArea listBox = new JTextArea();
+		listBox = new JTextArea();
 		listBox.setText("Possible words: ");
 		listBox.setWrapStyleWord(true);
 		listBox.setLineWrap(true);
@@ -148,22 +141,27 @@ public class FrameTwo extends JFrame {
 		Jframe.add(wordCount);
 		wordCount.setEditable(false);
 		
-		JButton enterButton = new JButton("Enter");
+		enterButton = new JButton("Enter");
 		enterButton.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		enterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Increase enter counter
 				enterCounter++;
+				//Checks if all squares in a row are green
 				if(Main.getOne() == 3 && Main.getTwo() == 3 && Main.getThree() == 3 && Main.getFour() == 3 && Main.getFive() == 3) {
 					enterCounter = 7;
 				}
+				//Updates displays and texboxes
 				wordBox.setText("Try " + Main.setWord().toUpperCase());
 				wordCount.setText("Possible words left: \n" + Main.getLength());
 				listBox.setText("Possible words: " + String.join(", ", Main.getWordleList()));
+				//Resets algorithm values
 				Main.setOne(1);
 				Main.setTwo(1);
 				Main.setThree(1);
 				Main.setFour(1);
 				Main.setFive(1);
+				//Updates a row of guess boxes depending on the enterCounter number
 				if(enterCounter == 2) {
 					buttonr2c1.setText(Main.getWord().substring(0,1).toUpperCase());
 					buttonr2c2.setText(Main.getWord().substring(1,2).toUpperCase());
@@ -171,28 +169,28 @@ public class FrameTwo extends JFrame {
 					buttonr2c4.setText(Main.getWord().substring(3,4).toUpperCase());
 					buttonr2c5.setText(Main.getWord().substring(4,5).toUpperCase());
 				}
-				if(enterCounter == 3) {
+				else if(enterCounter == 3) {
 					buttonr3c1.setText(Main.getWord().substring(0,1).toUpperCase());
 					buttonr3c2.setText(Main.getWord().substring(1,2).toUpperCase());
 					buttonr3c3.setText(Main.getWord().substring(2,3).toUpperCase());
 					buttonr3c4.setText(Main.getWord().substring(3,4).toUpperCase());
 					buttonr3c5.setText(Main.getWord().substring(4,5).toUpperCase());
 				}
-				if(enterCounter == 4) {
+				else if(enterCounter == 4) {
 					buttonr4c1.setText(Main.getWord().substring(0,1).toUpperCase());
 					buttonr4c2.setText(Main.getWord().substring(1,2).toUpperCase());
 					buttonr4c3.setText(Main.getWord().substring(2,3).toUpperCase());
 					buttonr4c4.setText(Main.getWord().substring(3,4).toUpperCase());
 					buttonr4c5.setText(Main.getWord().substring(4,5).toUpperCase());
 				}
-				if(enterCounter == 5) {
+				else if(enterCounter == 5) {
 					buttonr5c1.setText(Main.getWord().substring(0,1).toUpperCase());
 					buttonr5c2.setText(Main.getWord().substring(1,2).toUpperCase());
 					buttonr5c3.setText(Main.getWord().substring(2,3).toUpperCase());
 					buttonr5c4.setText(Main.getWord().substring(3,4).toUpperCase());
 					buttonr5c5.setText(Main.getWord().substring(4,5).toUpperCase());
 				}
-				if(enterCounter == 6) {
+				else if(enterCounter == 6) {
 					buttonr6c1.setText(Main.getWord().substring(0,1).toUpperCase());
 					buttonr6c2.setText(Main.getWord().substring(1,2).toUpperCase());
 					buttonr6c3.setText(Main.getWord().substring(2,3).toUpperCase());
@@ -213,6 +211,7 @@ public class FrameTwo extends JFrame {
 		Jframe.add(buttonr1c1);
 		buttonr1c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Counter cycles between 0 - 2 
 				if(enterCounter == 1) {
 					if(counterR1C1 == 2) {
 						counterR1C1 = 0;
@@ -220,7 +219,7 @@ public class FrameTwo extends JFrame {
 					else if(counterR1C1 < 2) {
 						counterR1C1++;
 					}
-					
+					//Depending on the counter this button is set to either gray, yellow, or green
 					if(counterR1C1 == 0) {
 						buttonr1c1.setBackground(Color.GRAY);
 					}
@@ -230,7 +229,7 @@ public class FrameTwo extends JFrame {
 					else if(counterR1C1 == 2) {
 						buttonr1c1.setBackground(Color.GREEN);
 					}
-					
+					//Once button color is set, algorithm values will also be set
 					if(buttonr1c1.getBackground() == Color.GREEN) {
 						Main.setOne(3);
 					}
@@ -1384,22 +1383,26 @@ public class FrameTwo extends JFrame {
 		resetButton = new JButton("Reset");
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Reset some of the algorithm values using Main.setUp()
 				try {
 					Main.setUp();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				//Reset enterCounter since we're back on row one of guess boxes
 				enterCounter = 1;
+				//Reset all texboxes and displays
 				listBox.setText("Possible words left: ");
 				wordBox.setText("Try " + Main.getWord().toUpperCase());
 				wordCount.setText("Words left: ");
+				//Main.setUp() does not reset these algorithm values so will be manually reset
 				Main.setOne(1);
 				Main.setTwo(1);
 				Main.setThree(1);
 				Main.setFour(1);
 				Main.setFive(1);
-				
+				//Reseting all counters so that guess boxes counter will match up with the color gray
 				counterR1C1 = 0;
 				counterR1C2 = 0;
 				counterR1C3 = 0;
@@ -1430,7 +1433,7 @@ public class FrameTwo extends JFrame {
 				counterR6C3 = 0;
 				counterR6C4 = 0;
 				counterR6C5 = 0;
-				
+				//Setting all guess boxes back to gray
 				buttonr1c1.setBackground(Color.GRAY);
 				buttonr1c2.setBackground(Color.GRAY);
 				buttonr1c3.setBackground(Color.GRAY);
@@ -1466,7 +1469,7 @@ public class FrameTwo extends JFrame {
 				buttonr6c3.setBackground(Color.GRAY);
 				buttonr6c4.setBackground(Color.GRAY);
 				buttonr6c5.setBackground(Color.GRAY);
-				
+				//Resetting rows 2 and above of guess boxes so that only SALET is shown on 1st row.
 				buttonr2c1.setText("");
 				buttonr2c2.setText("");
 				buttonr2c3.setText("");
